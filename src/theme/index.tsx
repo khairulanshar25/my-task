@@ -10,6 +10,21 @@ import { useContext } from '../hooks/provider'
 import useDispatcher from '../hooks/useDispatcher'
 import { CacheProvider } from '@emotion/react'
 
+/**
+ * Provides theming context and configuration for the application using Material-UI and Emotion.
+ *
+ * @param props - The properties for the ThemeProvider component.
+ * @param props.children - The child components to be rendered within the theme context.
+ * @param props.shadowRootElement - The root element for shadow DOM styling.
+ * @param props.shadowContainer - The container element for shadow DOM styling.
+ *
+ * @returns Themed React elements wrapped with Emotion's CacheProvider and Material-UI's ThemeProvider.
+ *
+ * @remarks
+ * - Initializes theme configuration and cache using the `Config` function.
+ * - Dispatches theme configuration and root elements to the global store.
+ * - Applies global styles and CSS baseline for consistent styling.
+ */
 const ThemeProvider: React.FC<RootProps> = (props: RootProps): ReactElement => {
   const { children, shadowRootElement, shadowContainer } = props
   const [store] = useContext()

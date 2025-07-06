@@ -23,14 +23,15 @@ const Root = styled(Box)(({ theme }) => ({
   },
   [`& .${classes.toggleButtonGroup}`]: {
     '& .MuiToggleButton-root': {
-      height: '28px',
-      padding: '6px 12px',
+      height: 'auto',
+      padding: '6px 8px',
       fontWeight: 400,
       color: theme.palette.text.primary,
       backgroundColor: theme.palette.background.paper,
       [theme.breakpoints.down('sm')]: {
-        fontSize: '9px',
-        height: '32px',
+        fontSize: '0.5rem',
+        padding: '3px 7px',
+        height: 'auto',
       },
       '&:hover': {
         backgroundColor: theme.palette.action.hover,
@@ -46,7 +47,7 @@ const Root = styled(Box)(({ theme }) => ({
   },
   [`& .${classes.table}`]: {
     display: 'flex',
-    height: 'calc(100vh - 109px)',
+    height: 'calc(100vh - 99px)',
     width: '100%',
     ...hideScrollbarY,
     ...hideScrollbarX,

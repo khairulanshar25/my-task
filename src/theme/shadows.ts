@@ -3,6 +3,19 @@ import palette from './palette'
 
 const color = palette.grey[500]
 
+/**
+ * Generates an array of CSS box-shadow values with varying levels of elevation.
+ *
+ * Each shadow is composed of three layers with different opacities, created using the `alpha` function
+ * applied to a base color. The returned array can be used to provide consistent shadow styles
+ * throughout a UI, such as in Material Design elevation levels.
+ *
+ * @returns {string[]} An array of CSS box-shadow strings, starting with 'none' for no shadow.
+ *
+ * @remarks
+ * - The `color` variable and the `alpha` function must be defined in the module's scope.
+ * - The returned array contains 25 shadow definitions, corresponding to different elevation levels.
+ */
 export default function shadows() {
   const transparent1 = alpha(color, 0.2)
   const transparent2 = alpha(color, 0.14)

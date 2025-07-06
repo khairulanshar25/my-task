@@ -6,6 +6,15 @@ export function pxToRem(value: number) {
   return `${value / 16}rem`
 }
 
+/**
+ * Generates a set of responsive font size styles for different viewport widths.
+ *
+ * @param params - An object containing font sizes for small, medium, and large breakpoints.
+ * @param params.sm - Font size (in px) for small screens (min-width: 600px).
+ * @param params.md - Font size (in px) for medium screens (min-width: 900px).
+ * @param params.lg - Font size (in px) for large screens (min-width: 1200px).
+ * @returns An object with media queries as keys and corresponding font size styles as values.
+ */
 export function responsiveFontSizes({
   sm,
   md,

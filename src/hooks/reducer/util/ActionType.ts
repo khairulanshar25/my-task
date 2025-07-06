@@ -12,7 +12,7 @@ export type ActionType =
   | 'SET_TOKEN'
   | 'SET_REFRESH_TOKEN'
   | 'SET_PROJECTS'
-  | 'SET_PROJECT_IS_LOADING'
+  | 'SET_TASKS'
   | 'SET_ROOT'
 
 export interface IAction {
@@ -33,5 +33,5 @@ export const ActionType = {
   SET_TOKEN: 'SET_TOKEN',
   SET_REFRESH_TOKEN: 'SET_REFRESH_TOKEN',
   SET_PROJECTS: 'SET_PROJECTS',
-  SET_PROJECT_IS_LOADING: 'SET_PROJECT_IS_LOADING',
+  SET_TASKS: 'SET_TASKS',
 } as const

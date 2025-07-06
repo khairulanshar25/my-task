@@ -18,13 +18,15 @@ const Home: React.FC<HomeProps> = (_props): React.ReactElement => {
       <Root className={classes.root} data-testid={PREFIX}>
         <Router>
           <AppBar />
-          <React.Suspense fallback={<Loader />}>
-            <Routes>
-              <Route path='/pofile' element={<UserProfile />} />
-              <Route path='/project/*' element={<ProjectRouting />} />
-              <Route path='/' element={<ProjectRouting />} />
-            </Routes>
-          </React.Suspense>
+          <section className={classes.content}>
+            <React.Suspense fallback={<Loader />}>
+              <Routes>
+                <Route path='/pofile' element={<UserProfile />} />
+                <Route path='/project/*' element={<ProjectRouting />} />
+                <Route path='/' element={<ProjectRouting />} />
+              </Routes>
+            </React.Suspense>
+          </section>
         </Router>
         <Timeout
           open={showtimeout}

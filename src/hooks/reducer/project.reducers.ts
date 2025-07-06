@@ -7,8 +7,8 @@ const reducers = (store: RootModel, action: IAction): RootModel => {
     case ActionType.SET_PROJECTS:
       store.projects = action.data.projects
       break
-    case ActionType.SET_PROJECT_IS_LOADING:
-      store.isProjectsLoading = action.data.isProjectsLoading
+    case ActionType.SET_TASKS:
+      store.tasks = action.data.tasks
       break
     default:
       break

@@ -1,5 +1,7 @@
 import { ProjectStatus, type Project } from '../hooks/model/project'
+import { Task, TaskStatus } from '../hooks/model/task'
 import { User } from '../hooks/model/root'
+import { getId } from '../utils/id'
 
 /**
  * An array of mock user objects used for testing or development purposes.
@@ -94,6 +96,7 @@ export const dummyProjects: Project[] = dummyUsers.flatMap((user) => {
       ),
       endedAt: undefined,
       ownerId: user._id,
+      numberofTasks: Math.floor(Math.random() * 10 + 1),
     }),
   )
   return arr.flatMap((project) => ({
@@ -111,3 +114,55 @@ export const dummyProjects: Project[] = dummyUsers.flatMap((user) => {
         : undefined,
   }))
 })
+
+/**
+ * Generate an array of mock Task objects for a given projectId.
+ * @param projectId - The project ID to associate tasks with.
+ * @param n - Number of tasks to generate.
+ * @param projectStatus - The status of the project to which the tasks belong.
+ * @returns Task[]
+ */
+export function generateDummyTasks(
+  projectId: string,
+  n: number,
+  projectStatus: string,
+): Task[] {
+  return Array.from({ length: n }, (_, index) => {
+    const statusValues = Object.values(TaskStatus)
+    const status =
+      projectStatus === ProjectStatus.COMPLETED
+        ? TaskStatus.COMPLETED
+        : statusValues[Math.floor(Math.random() * statusValues.length)]
+    const startedAt = new Date(
+      Date.now() - Math.floor(Math.random() * 30 + 1) * 24 * 60 * 60 * 1000,
+    )
+    const targetEndAt = new Date(
+      startedAt.getTime() +
+        Math.floor(Math.random() * 30 + 1) * 24 * 60 * 60 * 1000,
+    )
+    const endedAt =
+      status === TaskStatus.COMPLETED
+        ? new Date(
+            startedAt.getTime() +
+              Math.floor(Math.random() * 30 + 1) * 24 * 60 * 60 * 1000,
+          )
+        : undefined
+    const priority = index + 1 // Assign priority based on index, can be randomized further if needed
+    return {
+      _id: getId(),
+      name: `Task ${index + 1} for ${projectId}`,
+      description: `This is a description for task ${index + 1} in project ${projectId}.`,
+      status,
+      startedAt,
+      targetEndAt,
+      endedAt,
+      createdAt: new Date(
+        startedAt.getTime() -
+          Math.floor(Math.random() * 5) * 24 * 60 * 60 * 1000,
+      ),
+      updatedAt: new Date(),
+      priority,
+      projectId,
+    }
+  })
+}

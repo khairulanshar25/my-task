@@ -1,23 +1,21 @@
 import * as React from 'react'
+import { Routes, Route } from 'react-router'
 import ErrorBoundry from '../../components/ErrorBoundry'
-import { Routes, Route, useLocation, useNavigate } from 'react-router'
+import Loader from '../../components/Loader'
+import useController from './common/useController'
 
 const Project = React.lazy(() => import('../Project'))
-const Task = React.lazy(() => import('../Task'))
+const TaskRouting = React.lazy(() => import('../TaskRouting'))
 const ProjectRouting = () => {
-  const { pathname, ...rest } = useLocation()
-  const navigate = useNavigate()
-  React.useEffect(() => {
-    if (pathname === '/') {
-      navigate('/project')
-    }
-  }, [pathname])
-
+  const { pathname, navigate, rest, isReady } = useController()
+  if (!isReady) {
+    return <Loader />
+  }
   return (
     <ErrorBoundry>
       <Routes>
         <Route path='/' element={<Project />} />
-        <Route path='/:projectId' element={<Task />} />
+        <Route path='/:projectId' element={<TaskRouting />} />
       </Routes>
     </ErrorBoundry>
   )

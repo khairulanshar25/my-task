@@ -6,6 +6,16 @@ import {
 import { Theme } from '@mui/material/styles'
 import React from 'react'
 
+/**
+ * Applies global CSS styles to the application using MUI's `GlobalStyles` component.
+ *
+ * - Sets box-sizing, disables text selection, and applies font and color styles globally.
+ * - Customizes scrollbars and hides specific UI elements (e.g., `.lil-gui`).
+ * - Ensures consistent styling for images, lists, and number input fields across browsers.
+ * - Dynamically updates the document body's background color based on the current theme.
+ *
+ * @returns The global styles component to be included at the root of the app.
+ */
 export default function GlobalStyles() {
   const theme: Theme = useTheme()
   React.useEffect(() => {

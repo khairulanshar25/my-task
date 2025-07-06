@@ -11,7 +11,6 @@ const RootComp: React.FC<RootProps> = (
   _props: RootProps,
 ): React.ReactElement => {
   const { store, ready } = useController()
-
   if (!ready) {
     return <Loader />
   }

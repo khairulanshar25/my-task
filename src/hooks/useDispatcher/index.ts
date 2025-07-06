@@ -51,12 +51,8 @@ const useDispatcher = () => {
       dispacth({ type: ActionType.SET_PROJECTS, data: { projects } }),
     [],
   )
-  const dispatchIsProjectLoading = React.useCallback(
-    (isProjectsLoading: boolean) =>
-      dispacth({
-        type: ActionType.SET_PROJECT_IS_LOADING,
-        data: { isProjectsLoading },
-      }),
+  const dispatchTasks = React.useCallback(
+    (tasks: any[]) => dispacth({ type: ActionType.SET_TASKS, data: { tasks } }),
     [],
   )
 
@@ -69,7 +65,7 @@ const useDispatcher = () => {
     dispatchShowAlert,
     dispatchRoot,
     dispatchProjects,
-    dispatchIsProjectLoading,
+    dispatchTasks,
   }
 }
 

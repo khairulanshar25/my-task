@@ -12,6 +12,19 @@ import typography from './typography'
 import componentsOverride from './overrides'
 import createCache from '@emotion/cache'
 
+/**
+ * Generates a Material-UI theme and emotion cache configured for use within a shadow DOM context.
+ *
+ * @param shadowRootElement - The root HTMLElement of the shadow DOM where components will be rendered.
+ * @param shadowContainer - The container for emotion's style injection, typically the shadow root or an HTMLElement.
+ * @param mode - The color mode for the theme, either 'light' or 'dark'.
+ * @returns A tuple containing the configured Material-UI Theme and the emotion cache.
+ *
+ * @remarks
+ * - Applies custom palette, typography, shadows, and component overrides based on the selected mode.
+ * - Ensures all Material-UI components use the provided shadow root as their container for popper/portal elements.
+ * - Resets the global body padding, margin, and border to zero.
+ */
 const Config = (
   shadowRootElement: HTMLElement,
   shadowContainer: ShadowRoot | HTMLElement,

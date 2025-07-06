@@ -44,6 +44,7 @@ export const ProjectStatus = {
  * @property createdAt - Date when the project was created.
  * @property updatedAt - (Optional) Date when the project was last updated.
  * @property ownerId - Identifier of the user who owns the project.
+ * @property numberofTasks - (Optional) Number of tasks associated with the project.
  */
 export interface Project {
   _id: string
@@ -56,4 +57,5 @@ export interface Project {
   createdAt: Date
   updatedAt?: Date
   ownerId: string
+  numberofTasks?: number
 }

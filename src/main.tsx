@@ -8,7 +8,7 @@ if (import.meta.env.DEV) {
 
 // dummy function
 const dummy = () => {}
-console.log = dummy
+// console.log = dummy
 console.error = dummy
 console.warn = dummy
 console.info = dummy

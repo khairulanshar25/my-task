@@ -3,6 +3,18 @@ import palette from './palette'
 
 const color = palette.grey[500]
 
+/**
+ * Generates a set of custom shadow styles for use in a theme.
+ *
+ * The returned object contains various shadow presets (e.g., z1, z4, z8, etc.)
+ * as well as color-specific shadows (primary, info, secondary, etc.) and
+ * component-specific shadows (card, dialog, dropdown).
+ *
+ * Each shadow is defined as a CSS box-shadow string, using the provided color
+ * values with alpha transparency applied.
+ *
+ * @returns An object mapping shadow keys to their corresponding CSS box-shadow values.
+ */
 export default function customShadows() {
   const transparent = alpha(color, 0.16)
   return {
