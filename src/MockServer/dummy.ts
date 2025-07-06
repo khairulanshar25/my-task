@@ -1,7 +1,7 @@
 import { ProjectStatus, type Project } from '../hooks/model/project'
 import { Task, TaskStatus } from '../hooks/model/task'
 import { User } from '../hooks/model/root'
-import { getId } from '../utils/id'
+import { getId } from '../utils/uuid'
 
 /**
  * An array of mock user objects used for testing or development purposes.
