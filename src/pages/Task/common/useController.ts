@@ -4,11 +4,13 @@ import { useTheme, useMediaQuery } from '@mui/material'
 import { useContext } from '../../../hooks/provider'
 import useDispatcher from '../../../hooks/useDispatcher'
 import { TaskStatus } from '../../../hooks/model/task'
+import { getId } from '../../../utils/uuid'
 
 const useController = () => {
   const [store] = useContext()
   const { dispatchTasks } = useDispatcher()
   const { projectId } = useParams()
+  const [autoKey, setAutoKey] = useState(getId())
   const theme = useTheme()
   const isMdUp = useMediaQuery(theme.breakpoints.up('md'))
 
@@ -20,7 +22,7 @@ const useController = () => {
   ]
 
   const tasksByStatus = React.useMemo(() => {
-    return statusList.reduce(
+    const data = statusList.reduce(
       (grouped, status) => {
         grouped[status] =
           store.tasks?.filter(
@@ -30,6 +32,7 @@ const useController = () => {
       },
       {} as Record<string, typeof store.tasks>,
     )
+    return data
   }, [store.tasks, projectId])
 
   // Update task status (move to another status)
@@ -40,37 +43,28 @@ const useController = () => {
       temp[index].status = status
       dispatchTasks(temp)
     }
+    setAutoKey(getId())
   }
-  const updateTaskPriority = (
-    taskId: string,
-    status: string,
-    fromIndex: number,
-    toIndex: number,
-  ) => {
+  const updateTaskPriority = (fromId: string, toId: string, status: string) => {
     const temp = JSON.parse(JSON.stringify(store.tasks))
-    const index = temp?.findIndex((t) => t._id === taskId)
-    if (index >= 0) {
-      // const fromPriority = temp[fromIndex].priority
-      // const toPriority = temp[toIndex].priority
-      // temp[fromIndex].priority = toPriority
-      // temp[toIndex].priority = fromPriority
+    const fromIndex = temp?.findIndex((t) => t._id === fromId)
+    const toIndex = temp?.findIndex((t) => t._id === toId)
+    if (fromIndex >= 0 && toIndex >= 0) {
+      const fromPriority = temp[fromIndex].priority
+      const toPriority = temp[toIndex].priority
+      temp[fromIndex].priority = toPriority
+      temp[toIndex].priority = fromPriority
+      temp[toIndex].status = status
       dispatchTasks(temp)
     }
+    setAutoKey(getId())
   }
-  // Move task within the same status (priority)
   const moveTask = React.useCallback(
-    (fromIndex: number, toIndex: number, status: string) => {
-      if (fromIndex === toIndex) return
-      updateTaskPriority(
-        tasksByStatus[status][fromIndex]._id,
-        status,
-        fromIndex,
-        toIndex,
-      )
+    (fromTaskId: string, toTaskId: string, status: string) => {
+      updateTaskPriority(fromTaskId, toTaskId, status)
     },
     [store.tasks, tasksByStatus, updateTaskPriority],
   )
-  // Move task to another status
   const onDropTask = React.useCallback(
     (taskId: string, toStatus: string) => {
       updateTaskStatus(taskId, toStatus)
@@ -88,6 +82,7 @@ const useController = () => {
     tasksByStatus,
     moveTask,
     onDropTask,
+    autoKey,
   }
 }
 

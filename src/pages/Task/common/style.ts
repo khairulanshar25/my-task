@@ -54,6 +54,7 @@ const Root = styled('div')(({ theme }) => ({
     gap: theme.spacing(2),
   },
   [`& .${classes.card}`]: {
+    cursor: 'move',
     textAlign: 'left',
     backgroundColor: theme.palette.background.default,
     overflowY: 'auto',

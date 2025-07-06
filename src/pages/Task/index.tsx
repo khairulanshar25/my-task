@@ -18,25 +18,31 @@ function Task() {
     tasksByStatus,
     moveTask,
     onDropTask,
+    autoKey,
   } = useController()
 
   return (
-    <DndProvider backend={HTML5Backend}>
-      <Root className={classes.root} data-testid={PREFIX}>
-        <Box flexDirection={isMdUp ? 'row' : 'column'} className={classes.task}>
-          {statusList.map((status) => (
-            <StatusColumn
-              key={status}
-              status={status}
-              tasks={tasksByStatus[status]}
-              moveTask={moveTask}
-              onDropTask={onDropTask}
-              isMdUp={isMdUp}
-            />
-          ))}
-        </Box>
-      </Root>
-    </DndProvider>
+    <div key={autoKey}>
+      <DndProvider backend={HTML5Backend}>
+        <Root className={classes.root} data-testid={PREFIX}>
+          <Box
+            flexDirection={isMdUp ? 'row' : 'column'}
+            className={classes.task}
+          >
+            {statusList.map((status) => (
+              <StatusColumn
+                key={`${status}-autoKey`}
+                status={status}
+                tasks={tasksByStatus[status]}
+                moveTask={moveTask}
+                onDropTask={onDropTask}
+                isMdUp={isMdUp}
+              />
+            ))}
+          </Box>
+        </Root>
+      </DndProvider>
+    </div>
   )
 }
 

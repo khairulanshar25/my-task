@@ -6,6 +6,7 @@ import { classes } from './common/style'
 import { useDrop } from 'react-dnd'
 import { ItemTypes } from './common/interface'
 import TaskCard from './TaskCard'
+import { getId } from '../../utils/uuid'
 
 function StatusColumn({ status, tasks, moveTask, onDropTask, isMdUp }) {
   const [, drop] = useDrop({
@@ -20,7 +21,7 @@ function StatusColumn({ status, tasks, moveTask, onDropTask, isMdUp }) {
 
   return (
     <Paper ref={drop} elevation={3} className={classes.statusList}>
-      <Typography variant='h6' sx={{ mb: 2 }}>
+      <Typography variant='h6' className={classes.statusTitle}>
         {status}
       </Typography>
       <Box id='task-list' className={classes.taskList}>
@@ -34,12 +35,11 @@ function StatusColumn({ status, tasks, moveTask, onDropTask, isMdUp }) {
             .sort((a, b) => (a.priority ?? 0) - (b.priority ?? 0))
             .map((task, idx) => (
               <TaskCard
-                key={task._id}
+                key={`${status}-${task._id}-${getId()}`}
                 task={task}
                 index={idx}
                 status={status}
                 moveTask={moveTask}
-                onDropTask={onDropTask}
               />
             ))
         )}

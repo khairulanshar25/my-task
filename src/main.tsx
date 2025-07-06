@@ -9,11 +9,11 @@ if (import.meta.env.DEV) {
 // dummy function
 const dummy = () => {}
 // console.log = dummy
-console.error = dummy
-console.warn = dummy
-console.info = dummy
-console.debug = dummy
-console.trace = dummy
+// console.error = dummy
+// console.warn = dummy
+// console.info = dummy
+// console.debug = dummy
+// console.trace = dummy
 // dummy function end
 
 const container = document.getElementById(`khairul-root-main`)!
