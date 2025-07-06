@@ -1,12 +1,11 @@
 import React from 'react'
 import { describe, it, vi, beforeEach, afterEach, expect } from 'vitest'
-import { render } from '@testing-library/react'
+import { render, screen, waitFor } from '@testing-library/react'
 import ThemeProvider from './index'
 import * as ProviderHook from '../hooks/provider'
 import * as DispatcherHook from '../hooks/useDispatcher'
 import * as ConfigModule from './config'
 import { RootProps } from '../RootProps'
-import { render, screen, waitFor } from '@testing-library/react'
 import RootComp from '../root'
 import * as useControllerModule from '../root/common/useController'
 

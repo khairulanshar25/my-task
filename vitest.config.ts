@@ -9,7 +9,8 @@ export default defineConfig({
         'src/MockServer/**',
         'public/**',
         'src/theme/overrides/**',
-        '*.config.*'
+        '**/*.config.*',
+        '**/*.d.ts'
       ],
     },
   },
