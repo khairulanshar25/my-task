@@ -16,7 +16,7 @@ const Root = styled('main')(() => ({
   },
   [`& .${classes.content}`]: {
     width: '100%',
-    padding: '8px',
+    padding: 0,
     margin: 0,
     border: 0,
     ...hideScrollbarY,

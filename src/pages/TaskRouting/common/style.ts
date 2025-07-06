@@ -9,6 +9,7 @@ export const classes = {
 
 const Root = styled(Breadcrumbs)(({ theme }) => ({
   [`&.${classes.root}`]: {
+    padding: '0px 8px',
     ...hideScrollbarY,
     ...hideScrollbarX,
     marginBottom: theme.spacing(1),

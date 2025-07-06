@@ -12,6 +12,7 @@ export const classes = {
 
 const Root = styled(Box)(({ theme }) => ({
   [`&.${classes.root}`]: {
+    padding: '0px 8px',
     ...hideScrollbarY,
     ...hideScrollbarX,
     '& .MuiTypography-root': {
