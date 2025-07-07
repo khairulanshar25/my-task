@@ -31,7 +31,7 @@ function NewTask() {
     <Root aria-label='new task' className={classes.root} data-testid={PREFIX}>
       <Paper elevation={3} className={classes.paper}>
         <Typography variant='h5' gutterBottom>
-          Create New Task
+          {taskId ? `Edit Task: ${taskId.slice(0, 8)}` : 'Create New Task'}
         </Typography>
         <Box component='form' onSubmit={handleSubmit} noValidate>
           <Stack spacing={2}>
@@ -99,7 +99,7 @@ function NewTask() {
               minDateTime={task.startedAt ? task.startedAt : undefined}
             />
             <Button type='submit' variant='contained' color='primary' fullWidth>
-              Create Task
+              {taskId ? `Edit Task: ${taskId.slice(0, 8)}` : 'Create New Task'}
             </Button>
           </Stack>
         </Box>

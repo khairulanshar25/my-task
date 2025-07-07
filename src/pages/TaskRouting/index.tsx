@@ -66,7 +66,7 @@ function TaskRouting() {
         <Routes>
           <Route path='/task/:taskId/edit' element={<NewTask />} />
           <Route path='/new' element={<NewTask />} />
-          <Route path='/' element={<Task />} />
+          <Route path='/*' element={<Task />} />
         </Routes>
       </React.Suspense>
     </ErrorBoundry>
