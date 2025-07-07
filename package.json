@@ -13,7 +13,8 @@
     "test": "vitest --coverage",
     "pre-commit": "prettier --write ./src",
     "post-commit": "pretty-quick --staged",
-    "pre-push": "concurrently npm:test npm:lint"
+    "pre-push": "concurrently npm:test npm:lint",
+    "prepare": "husky"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",

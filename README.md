@@ -7,22 +7,26 @@ A task management application built with React, TypeScript, MUI, and Vite.
 ## 🚀 Setup Instructions
 
 1. **Clone the repository**
+
    ```sh
-   git clone <your-repo-url>
+   git clone https://github.com/khairulanshar25/my-task.git
    cd my-task
    ```
 
 2. **Install dependencies**
+
    ```sh
    npm install
    ```
 
 3. **Run the development server**
+
    ```sh
    npm run dev
    ```
 
 4. **Run tests**
+
    ```sh
    npm run test
    ```
@@ -41,7 +45,7 @@ A task management application built with React, TypeScript, MUI, and Vite.
 - **MUI (Material UI):** Provides accessible, customizable UI components.
 - **Vitest + Testing Library:** For fast, modern unit and integration testing.
 - **Feature Structure:** Code is organized by feature (e.g., `pages/`, `components/`, `hooks/`), making it scalable and maintainable.
-- **Custom Hooks:** Business logic and state management are encapsulated in custom hooks (e.g., `useController`, `useService`).
+- **Custom Hooks:** Business logic and state management are encapsulated in custom hooks (e.g., `useController`, `useService`, `style`).
 - **MockServer:** Used for local development and testing without a real backend.
 - **Theming:** Supports light/dark themes and user preferences via MUI's theming system.
 
