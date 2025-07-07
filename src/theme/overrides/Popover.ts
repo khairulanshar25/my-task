@@ -1,6 +1,4 @@
-import { Theme } from '@mui/material/styles'
-
-export default function Dialog(_theme: Theme) {
+export default function Dialog() {
   return {
     MuiPopover: {
       styleOverrides: {

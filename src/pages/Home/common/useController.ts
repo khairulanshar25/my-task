@@ -16,7 +16,6 @@ const useController = () => {
     if (mouseRef.current) {
       clearTimeout(mouseRef.current)
     }
-    //@ts-ignore
     mouseRef.current = setTimeout(() => {
       const { store: store_ } = getHooks()
       if (

@@ -21,7 +21,7 @@ vi.mock('../../../../../../utils/cssStyles', () => ({
 
 // Mock import.meta.env
 beforeEach(() => {
-  // @ts-ignore
+  // @ts-expect-error
   globalThis.import = { meta: { env: { MFE_APP_PREFIX_STYLE: 'testprefix' } } }
 })
 

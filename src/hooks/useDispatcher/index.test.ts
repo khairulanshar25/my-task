@@ -1,6 +1,7 @@
 /**
  * @vitest-environment jsdom
  */
+import { vi, expect, describe, it } from 'vitest'
 import { renderHook, act } from '@testing-library/react'
 import React from 'react'
 import { useContext } from '../provider'
@@ -17,7 +18,7 @@ describe('useDispatcher', () => {
 
   beforeEach(() => {
     dispatchMock = vi.fn()
-    // @ts-ignore
+    // @ts-expect-error
     useContext.mockReturnValue([{}, dispatchMock])
   })
 
