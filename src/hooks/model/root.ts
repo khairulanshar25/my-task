@@ -33,15 +33,15 @@ export interface ErrorState {
  * @property lastLogin - ISO string of the user's last login time.
  */
 export interface User {
-  _id: string
-  email: string
+  _id?: string
+  email?: string
   password?: string
-  name: string
-  role: string
-  createdAt: string
-  updatedAt: string
-  isActive: boolean
-  lastLogin: string
+  name?: string
+  role?: string
+  createdAt?: string
+  updatedAt?: string
+  isActive?: boolean
+  lastLogin?: string
 }
 /**
  * Represents the root model for application state.

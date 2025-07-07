@@ -1,13 +1,12 @@
+/**
+ * @vitest-environment jsdom
+ */
 import React from 'react'
-import { describe, it, vi, beforeEach, afterEach, expect } from 'vitest'
-import { render, screen, waitFor } from '@testing-library/react'
-import ThemeProvider from './index'
-import * as ProviderHook from '../hooks/provider'
-import * as DispatcherHook from '../hooks/useDispatcher'
-import * as ConfigModule from './config'
-import { RootProps } from '../RootProps'
-import RootComp from '../root'
-import * as useControllerModule from '../root/common/useController'
+import { describe, it, vi, beforeEach } from 'vitest'
+import { render } from '@testing-library/react'
+import '@testing-library/jest-dom'
+import RootComp from './index'
+import * as useControllerModule from './common/useController'
 
 // Mock dependencies
 vi.mock('@mui/material', async () => {
@@ -46,8 +45,6 @@ vi.mock('../components/Appbar', () => ({
 }))
 
 describe('RootComp', () => {
-  const mockUseController = useControllerModule.default as unknown as jest.Mock
-
   beforeEach(() => {
     vi.clearAllMocks()
   })
@@ -57,7 +54,14 @@ describe('RootComp', () => {
       ready: false,
       store: {},
     })
-    render(<RootComp />)
+    const dummyContainer = document.createElement('div')
+    const dummyRootElement = document.createElement('div')
+    render(
+      <RootComp
+        shadowContainer={dummyContainer}
+        shadowRootElement={dummyRootElement}
+      />,
+    )
   })
 
   it('renders Home when ready and user email exists', async () => {
@@ -65,7 +69,14 @@ describe('RootComp', () => {
       ready: true,
       store: { user: { email: 'test@example.com' } },
     })
-    render(<RootComp />)
+    const dummyContainer = document.createElement('div')
+    const dummyRootElement = document.createElement('div')
+    render(
+      <RootComp
+        shadowContainer={dummyContainer}
+        shadowRootElement={dummyRootElement}
+      />,
+    )
   })
 
   it('renders Login when ready and user email does not exist', async () => {
@@ -73,6 +84,13 @@ describe('RootComp', () => {
       ready: true,
       store: { user: {} },
     })
-    render(<RootComp />)
+    const dummyContainer = document.createElement('div')
+    const dummyRootElement = document.createElement('div')
+    render(
+      <RootComp
+        shadowContainer={dummyContainer}
+        shadowRootElement={dummyRootElement}
+      />,
+    )
   })
 })

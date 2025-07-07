@@ -3,11 +3,31 @@
  */
 import React from 'react'
 import { vi, expect, describe, it } from 'vitest'
-import { render, screen, fireEvent } from '@testing-library/react'
+import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import Login from './index'
+import useController1 from './common/useController'
 
-// Mock dependencies
+const Comp = () => {
+  const {
+    handleSubmit,
+    handleEmailChange,
+    handlePasswordChange,
+    handleClickShowPassword,
+  } = useController1()
+  React.useEffect(() => {
+    // This is to ensure that the component mounts correctly
+    handleSubmit({ preventDefault: () => {} } as React.FormEvent)
+    handleEmailChange({
+      target: { value: '' },
+    } as React.ChangeEvent<HTMLInputElement>)
+    handlePasswordChange({
+      target: { value: '' },
+    } as React.ChangeEvent<HTMLInputElement>)
+    handleClickShowPassword()
+  }, [])
+  return <div>hello</div>
+}
 
 vi.mock('../../components/ErrorBoundry', () => ({
   __esModule: true,
@@ -50,6 +70,12 @@ describe('Login', () => {
     mockPassword = ''
     mockShowPassword = false
     vi.clearAllMocks()
+  })
+
+  it('renders Comp', async () => {
+    await waitFor(() => {
+      render(<Comp />)
+    })
   })
 
   it('renders login form with all fields', () => {

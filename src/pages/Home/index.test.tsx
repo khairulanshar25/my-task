@@ -6,6 +6,17 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { render, screen, waitFor } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import Home from './index'
+import useController1 from './common/useController'
+
+const Comp = () => {
+  const { continueSession, logout } = useController1()
+  React.useEffect(() => {
+    // This is to ensure that the component mounts correctly
+    continueSession()
+    logout()
+  }, [])
+  return <div>hello</div>
+}
 
 // Mock dependencies
 vi.mock('../../components/ErrorBoundry', () => ({
@@ -47,9 +58,13 @@ vi.mock('../UserProfile', () => ({
 
 describe('Home', () => {
   beforeEach(() => {
-    // Reset mocks if needed
+    vi.clearAllMocks()
   })
-
+  it('renders Comp', async () => {
+    await waitFor(() => {
+      render(<Comp />)
+    })
+  })
   it('renders root and appbar', () => {
     render(<Home />)
     expect(screen.getByTestId('undefined_home')).toBeInTheDocument()
@@ -66,8 +81,6 @@ describe('Home', () => {
 
   it('renders Loader as fallback while lazy components load', async () => {
     render(<Home />)
-    //expect(screen.getByTestId('loader')).toBeInTheDocument()
-    // Wait for lazy components to load
     await waitFor(() => {
       expect(screen.getByTestId('project-routing')).toBeInTheDocument()
     })

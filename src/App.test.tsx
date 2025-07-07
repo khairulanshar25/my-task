@@ -27,7 +27,11 @@ vi.mock('./root', () => ({
 
 describe('App', () => {
   it('renders Provider, ThemeProvider, and Root components', () => {
-    const props = { someProp: 'value' }
+    const props = {
+      someProp: 'value',
+      shadowContainer: document.createElement('div'),
+      shadowRootElement: document.createElement('div'),
+    }
     const { getByTestId } = render(<App {...props} />)
 
     expect(getByTestId('provider')).toBeTruthy()
@@ -36,7 +40,11 @@ describe('App', () => {
   })
 
   it('passes props to ThemeProvider and Root', () => {
-    const props = { custom: 'test' }
+    const props = {
+      custom: 'test',
+      shadowContainer: document.createElement('div'),
+      shadowRootElement: document.createElement('div'),
+    }
     const { getByTestId } = render(<App {...props} />)
     expect(getByTestId('root').getAttribute('custom')).toBe('test')
   })

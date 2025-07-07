@@ -26,15 +26,12 @@ vi.mock('react-router', () => ({
 
 describe('AppBar', () => {
   const mockUseController = useControllerModule.default as unknown as jest.Mock
-
   beforeEach(() => {
     vi.clearAllMocks()
   })
-
   it('renders Comp', () => {
     render(<Comp />)
   })
-
   it('renders app bar with auth', () => {
     vi.spyOn(useControllerModule, 'default').mockReturnValue({
       auth: true,
