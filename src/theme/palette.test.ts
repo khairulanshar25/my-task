@@ -4,6 +4,7 @@ import palette, {
   lightText,
   darkText,
 } from './palette'
+import { vi, expect, describe, it } from 'vitest'
 
 // Mock alpha function from @mui/material/styles
 vi.mock('@mui/material/styles', () => ({

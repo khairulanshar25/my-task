@@ -53,6 +53,7 @@ function Project() {
           className={classes.table}
           disableRowSelectionOnClick
           initialState={{
+            //@ts-ignore
             pinnedColumns: { left: ['actions'], right: [] },
           }}
           columnVisibilityModel={{

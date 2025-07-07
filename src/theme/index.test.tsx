@@ -5,7 +5,6 @@ import ThemeProvider from './index'
 import * as ProviderHook from '../hooks/provider'
 import * as DispatcherHook from '../hooks/useDispatcher'
 import * as ConfigModule from './config'
-import { RootProps } from '../RootProps'
 
 // Mock dependencies
 vi.mock('@mui/material', () => ({
@@ -41,18 +40,20 @@ describe('ThemeProvider', () => {
   const mockConfig = vi.fn(() => [mockTheme, mockCache])
   const mockDispatchThemeConfig = vi.fn()
   const mockDispatchRoot = vi.fn()
-  const mockUseContext = vi.fn()
-  const mockUseDispatcher = vi.fn()
 
   beforeEach(() => {
-    vi.spyOn(ConfigModule, 'default').mockImplementation(mockConfig)
+    vi.spyOn(ConfigModule, 'default').mockImplementation(mockConfig as any)
     vi.spyOn(ProviderHook, 'useContext').mockImplementation(() => [
       { theme: 'light' },
+      vi.fn(),
     ])
-    vi.spyOn(DispatcherHook, 'default').mockImplementation(() => ({
-      dispatchThemeConfig: mockDispatchThemeConfig,
-      dispatchRoot: mockDispatchRoot,
-    }))
+    vi.spyOn(DispatcherHook, 'default').mockImplementation(
+      () =>
+        ({
+          dispatchThemeConfig: mockDispatchThemeConfig as any,
+          dispatchRoot: mockDispatchRoot,
+        }) as any,
+    )
     mockConfig.mockClear()
     mockDispatchThemeConfig.mockClear()
     mockDispatchRoot.mockClear()

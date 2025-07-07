@@ -1,4 +1,5 @@
 import Config from './config'
+import { vi, expect, describe, it } from 'vitest'
 import { Theme } from '@mui/material/styles'
 
 // Mock dependencies

@@ -1,0 +1,4 @@
+#!/bin/sh
+#. "$(dirname "$0")/_/husky.sh"
+
+npm exec prettier --write ./src && npm exec pretty-quick --staged && npm exec concurrently npm:lint

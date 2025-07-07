@@ -7,6 +7,7 @@ export default function Tooltip(theme: Theme) {
         tooltip: {
           backgroundColor: theme.palette.background.paper,
           boxShadow: theme.shadows[2],
+          color: theme.palette.text.primary,
         },
         arrow: {
           color: theme.palette.grey[800],

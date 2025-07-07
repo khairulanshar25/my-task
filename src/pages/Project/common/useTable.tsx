@@ -4,7 +4,6 @@ import { Project } from '../../../hooks/model/project'
 import { formatDate } from '../../../utils/date'
 import { GridColDef, GridActionsCellItem } from '@mui/x-data-grid-pro'
 import IconButton from '@mui/material/IconButton'
-import DeleteIcon from '@mui/icons-material/Delete'
 import TaskOutlinedIcon from '@mui/icons-material/TaskOutlined'
 import { useNavigate } from 'react-router'
 import { CustomTooltip } from './style'
@@ -20,7 +19,7 @@ const useTable = () => {
       width: 30,
       getActions: (params) => {
         const { _id } = params.row
-        const handleClick = (action: string) => {
+        const handleClick = (_event: React.MouseEvent<HTMLElement>) => {
           navigate(`/project/${_id}`)
         }
         return [

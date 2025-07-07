@@ -1,69 +1,97 @@
-# React + TypeScript + Vite
+# My Task App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A task management application built with React, TypeScript, MUI, and Vite.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Setup Instructions
 
-## Expanding the ESLint configuration
+1. **Clone the repository**
+   ```sh
+   git clone <your-repo-url>
+   cd my-task
+   ```
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+2. **Install dependencies**
+   ```sh
+   npm install
+   ```
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+3. **Run the development server**
+   ```sh
+   npm run dev
+   ```
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+4. **Run tests**
+   ```sh
+   npm run test
+   ```
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+5. **Build for production**
+   ```sh
+   npm run build
+   ```
+
+---
+
+## 🛠️ Design Decisions
+
+- **React + TypeScript:** Ensures type safety and modern component-based architecture.
+- **Vite:** Fast development server and optimized build.
+- **MUI (Material UI):** Provides accessible, customizable UI components.
+- **Vitest + Testing Library:** For fast, modern unit and integration testing.
+- **Feature Structure:** Code is organized by feature (e.g., `pages/`, `components/`, `hooks/`), making it scalable and maintainable.
+- **Custom Hooks:** Business logic and state management are encapsulated in custom hooks (e.g., `useController`, `useService`).
+- **MockServer:** Used for local development and testing without a real backend.
+- **Theming:** Supports light/dark themes and user preferences via MUI's theming system.
+
+---
+
+## ⚠️ Known Issues
+
+- **CSS Imports in Tests:** Some MUI components import CSS files directly. If you see errors like `Unknown file extension ".css"`.
+- **LocalStorage in Tests:** Some initial values (like theme or token) are read from `localStorage` at module load time. To test these, you must mock `localStorage` and dynamically import the module in your test.
+- **Mocking with Vitest:** All variables used in `vi.mock` factories must be declared before the mock due to hoisting.
+- **Date Handling:** Date fields (e.g., `startedAt`, `targetEndAt`) are handled as strings in forms and converted to `Date` objects on submit. Ensure consistent formats when integrating with APIs.
+- **Testing Event Listeners:** When mocking global event listeners (e.g., `addEventListener`), ensure your mocks do not return values and are reset between tests.
+
+---
+
+## 📁 Project Structure
+
+- `src/pages/` — Main app pages (e.g., Home, UserProfile, NewTask)
+- `src/components/` — Reusable UI components
+- `src/hooks/` — Custom hooks and models
+- `src/theme/` — Theme configuration and customization
+- `src/MockServer/` — Mock API server for development/testing
+
+---
+
+## 🐶 Husky Git Hooks
+
+This project uses [Husky](https://typicode.github.io/husky/) to automate quality checks and formatting at various stages of the Git workflow:
+
+- **pre-commit:**  
+  Runs `prettier --write ./src` to automatically format your code before each commit.
+
+- **post-commit:**  
+  Runs `pretty-quick --staged` to quickly format only the files that were staged in the last commit.
+
+- **pre-push:**  
+  Runs both tests (`npm run test`) and linting (`npm run lint`) before allowing a push. This helps ensure that only passing and linted code is pushed to the repository.
+
+### Setup
+
+If you install dependencies with `npm install`, Husky will automatically set up the hooks.  
+If you need to (re)install Husky hooks manually, run:
+
+```sh
+npx husky install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+You can find and customize the hook scripts in the `.husky/` directory at the root of the project.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+**Note:**  
+These hooks help maintain code quality and consistency across all contributors. If a hook fails, the commit or push will be aborted until the issues are resolved.
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---

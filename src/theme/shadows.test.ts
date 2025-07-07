@@ -1,4 +1,5 @@
 import shadows from './shadows'
+import { vi, expect, describe, it } from 'vitest'
 
 // Mock dependencies
 vi.mock('@mui/material/styles', () => ({
