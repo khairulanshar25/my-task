@@ -49,7 +49,7 @@ function Project() {
           columns={columns}
           getRowId={getRowId}
           loading={filteredProjects.length === 0}
-          rowCount={filteredProjects.length}
+          //rowCount={filteredProjects.length}
           className={classes.table}
           disableRowSelectionOnClick
           initialState={{

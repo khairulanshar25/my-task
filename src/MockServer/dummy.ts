@@ -77,7 +77,7 @@ export const dummyProjects: Project[] = dummyUsers.flatMap((user) => {
   const arr = Array.from(
     { length: Math.floor(Math.random() * 31) + 50 },
     (_, index) => ({
-      _id: `project-${user._id}-${index}`,
+      _id: getId(),
       name: `Project ${index + 1} for ${user.name}`,
       description: `This is a description for project ${index + 1} created by ${user.name}.`,
       status:
@@ -95,7 +95,7 @@ export const dummyProjects: Project[] = dummyUsers.flatMap((user) => {
         Date.now() + Math.floor(Math.random() * 90 + 2) * 24 * 60 * 60 * 1000,
       ),
       endedAt: undefined,
-      ownerId: user._id,
+      ownerId: user._id ?? '',
       numberofTasks: Math.floor(Math.random() * 10 + 1),
     }),
   )

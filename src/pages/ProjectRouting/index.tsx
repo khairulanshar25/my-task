@@ -15,7 +15,7 @@ const ProjectRouting = () => {
     <ErrorBoundry>
       <Routes>
         <Route path='/' element={<Project />} />
-        <Route path='/:projectId' element={<TaskRouting />} />
+        <Route path='/:projectId/*' element={<TaskRouting />} />
       </Routes>
     </ErrorBoundry>
   )

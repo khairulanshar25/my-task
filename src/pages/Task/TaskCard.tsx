@@ -1,14 +1,13 @@
 import * as React from 'react'
-import { TaskStatus } from '../../hooks/model/task'
-import { Box, Typography, Card, CardContent } from '@mui/material'
+import { Typography, Card, CardContent, useTheme } from '@mui/material'
 import { classes } from './common/style'
 import { formatDate } from '../../utils/date'
-import { ItemTypes } from './common/interface'
-
+import { ItemTypes, TaskCardProps } from './common/interface'
 // React DnD imports
 import { useDrag, useDrop } from 'react-dnd'
 
-function TaskCard({ task, index, status, moveTask }) {
+function TaskCard({ task, index, status, moveTask }: TaskCardProps) {
+  const theme = useTheme()
   const ref = React.useRef<HTMLDivElement>(null)
   const [, drop] = useDrop({
     accept: ItemTypes.TASK,
@@ -49,10 +48,18 @@ function TaskCard({ task, index, status, moveTask }) {
         >
           {task.description}
         </Typography>
-        <Typography variant='body2' color='info.light'>
+        <Typography
+          variant='body2'
+          color={theme.palette.mode === 'dark' ? 'info.light' : 'info.dark'}
+        >
           Status: {task.status}
         </Typography>
-        <Typography variant='body2' color='warning'>
+        <Typography
+          variant='body2'
+          color={
+            theme.palette.mode === 'dark' ? 'warning.light' : 'warning.dark'
+          }
+        >
           Priority: {task.priority}
         </Typography>
         <Typography variant='caption' sx={{ display: 'block' }}>
