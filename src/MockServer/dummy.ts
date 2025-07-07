@@ -151,7 +151,7 @@ export function generateDummyTasks(
     return {
       _id: getId(),
       name: `Task ${index + 1} for ${projectId}`,
-      description: `This is a description for task ${index + 1} in project ${projectId}.`,
+      description: `This is a description for task ${index + 1} in project ${projectId.slice(0, 8)}.`,
       status,
       startedAt,
       targetEndAt,

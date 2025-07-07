@@ -4,6 +4,7 @@ import { useParams, useNavigate } from 'react-router'
 import { useContext } from '../../../hooks/provider'
 import useDispatcher from '../../../hooks/useDispatcher'
 import { TaskStatus, TaskStatusType } from '../../../hooks/model/task'
+import { getId } from '../../../utils/uuid'
 
 const initialTask = {
   name: '',
@@ -18,13 +19,25 @@ const initialTask = {
 const useController = () => {
   const [store] = useContext()
   const { dispatchTasks } = useDispatcher()
-  const { projectId } = useParams()
+  const { projectId, taskId } = useParams()
   const navigate = useNavigate()
   const [task, setTask] = React.useState({
     ...initialTask,
     projectId: projectId || '',
   })
   const [errors, setErrors] = React.useState<{ [key: string]: string }>({})
+  React.useEffect(() => {
+    if (taskId) {
+      const existingTask = store.tasks.find((t: any) => t._id === taskId)
+      if (existingTask) {
+        setTask({
+          ...existingTask,
+          startedAt: dayjs(existingTask.startedAt),
+          targetEndAt: dayjs(existingTask.targetEndAt),
+        })
+      }
+    }
+  }, [store.tasks, projectId, taskId, navigate])
 
   const handleChange = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -73,24 +86,46 @@ const useController = () => {
       // Convert date strings to Date objects
       const newTask = {
         ...task,
-        startedAt: new Date(task.startedAt),
-        targetEndAt: new Date(task.targetEndAt),
-        createdAt: new Date(),
-        updatedAt: new Date(),
-        _id: Math.random().toString(36).slice(2), // simple id
+        startedAt: new Date(task.startedAt).toISOString(),
+        targetEndAt: new Date(task.targetEndAt).toISOString(),
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        _id: getId(),
       }
-      onSubmit?.(newTask)
-      // Reset form
-      setTask({ ...initialTask, projectId: task.projectId })
+      if (taskId) {
+        onEditTask(taskId, newTask)
+      } else {
+        onSubmit(newTask)
+      }
     }
   }
-  const onSubmit = (newTask: any) => {
-    const temp = JSON.parse(JSON.stringify(store.tasks))
-    newTask.priority = temp.length + 1
-    temp.push(newTask)
-    dispatchTasks(temp)
-    navigate(`/project/${projectId}`)
-  }
+  const onSubmit = React.useCallback(
+    (newTask: any) => {
+      const temp = JSON.parse(JSON.stringify(store.tasks))
+      newTask.priority = temp.length + 1
+      temp.push(newTask)
+      dispatchTasks(temp)
+      navigate(`/project/${projectId}`)
+    },
+    [store.tasks, dispatchTasks],
+  )
+
+  const onEditTask = React.useCallback(
+    (taskId: string, updatedTask: any) => {
+      const temp = JSON.parse(JSON.stringify(store.tasks))
+      const index = temp?.findIndex((t) => t._id === taskId)
+      if (index >= 0) {
+        temp[index] = {
+          ...temp[index],
+          ...updatedTask,
+          updatedAt: new Date().toISOString(),
+        }
+        dispatchTasks(temp)
+        navigate(`/project/${projectId}`)
+      }
+    },
+    [store.tasks, dispatchTasks],
+  )
 
   return {
     store,
@@ -103,6 +138,7 @@ const useController = () => {
     projectId,
     handleStartedAt,
     handleTargetEndAt,
+    taskId,
   }
 }
 

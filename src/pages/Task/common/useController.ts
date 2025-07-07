@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useParams } from 'react-router'
+import { useParams, useNavigate, useLocation } from 'react-router'
 import { useTheme, useMediaQuery } from '@mui/material'
 import { useContext } from '../../../hooks/provider'
 import useDispatcher from '../../../hooks/useDispatcher'
@@ -9,7 +9,9 @@ import { getId } from '../../../utils/uuid'
 const useController = () => {
   const [store] = useContext()
   const { dispatchTasks } = useDispatcher()
+  const { pathname, ...rest } = useLocation()
   const { projectId } = useParams()
+  const navigate = useNavigate()
   const [autoKey, setAutoKey] = useState(getId())
   const theme = useTheme()
   const isMdUp = useMediaQuery(theme.breakpoints.up('md'))
@@ -71,6 +73,23 @@ const useController = () => {
     },
     [store.tasks, tasksByStatus, updateTaskStatus],
   )
+  const onEditTask = React.useCallback(
+    (taskId) => {
+      navigate(`${pathname}/task/${taskId}/edit`)
+    },
+    [pathname],
+  )
+  const onDeleteTask = React.useCallback(
+    (taskId: string) => {
+      const temp = JSON.parse(JSON.stringify(store.tasks))
+      const index = temp?.findIndex((t) => t._id === taskId)
+      if (index >= 0) {
+        temp.splice(index, 1)
+        dispatchTasks(temp)
+      }
+    },
+    [store.tasks, dispatchTasks],
+  )
   return {
     projectId,
     store,
@@ -83,6 +102,8 @@ const useController = () => {
     moveTask,
     onDropTask,
     autoKey,
+    onEditTask,
+    onDeleteTask,
   }
 }
 

@@ -8,7 +8,15 @@ import { ItemTypes } from './common/interface'
 import TaskCard from './TaskCard'
 import { getId } from '../../utils/uuid'
 
-function StatusColumn({ status, tasks, moveTask, onDropTask, isMdUp }) {
+function StatusColumn({
+  status,
+  tasks,
+  moveTask,
+  onDropTask,
+  isMdUp,
+  onEditTask,
+  onDeleteTask,
+}) {
   const [, drop] = useDrop({
     accept: ItemTypes.TASK,
     drop: (item: any) => {
@@ -31,7 +39,7 @@ function StatusColumn({ status, tasks, moveTask, onDropTask, isMdUp }) {
           </Typography>
         ) : (
           tasks
-            .slice() // create a shallow copy to avoid mutating props
+            .slice()
             .sort((a, b) => (a.priority ?? 0) - (b.priority ?? 0))
             .map((task, idx) => (
               <TaskCard
@@ -40,6 +48,8 @@ function StatusColumn({ status, tasks, moveTask, onDropTask, isMdUp }) {
                 index={idx}
                 status={status}
                 moveTask={moveTask}
+                onEditTask={onEditTask}
+                onDeleteTask={onDeleteTask}
               />
             ))
         )}

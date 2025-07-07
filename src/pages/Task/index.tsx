@@ -19,6 +19,8 @@ function Task() {
     moveTask,
     onDropTask,
     autoKey,
+    onEditTask,
+    onDeleteTask,
   } = useController()
 
   return (
@@ -37,6 +39,8 @@ function Task() {
                 moveTask={moveTask}
                 onDropTask={onDropTask}
                 isMdUp={isMdUp}
+                onEditTask={onEditTask}
+                onDeleteTask={onDeleteTask}
               />
             ))}
           </Box>

@@ -34,7 +34,9 @@ const useController = () => {
     [pathname],
   )
   const hideNewTask = React.useMemo(
-    () => pathnames[pathnames.length - 1] === 'new',
+    () =>
+      pathnames[pathnames.length - 1] === 'new' ||
+      pathnames[pathnames.length - 1] === 'edit',
     [pathname],
   )
   return {

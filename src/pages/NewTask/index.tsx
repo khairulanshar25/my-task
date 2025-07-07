@@ -25,6 +25,7 @@ function NewTask() {
     errors,
     task,
     projectId,
+    taskId,
   } = useController()
   return (
     <Root aria-label='new task' className={classes.root} data-testid={PREFIX}>
@@ -81,7 +82,7 @@ function NewTask() {
               fullWidth
               InputLabelProps={{ shrink: true }}
               required
-              disablePast
+              disablePast={!taskId}
             />
             <MobileDateTimePicker
               label='Target End At'
@@ -94,7 +95,7 @@ function NewTask() {
               fullWidth
               InputLabelProps={{ shrink: true }}
               required
-              disablePast
+              disablePast={!taskId}
               minDateTime={task.startedAt ? task.startedAt : undefined}
             />
             <Button type='submit' variant='contained' color='primary' fullWidth>

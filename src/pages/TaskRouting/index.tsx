@@ -36,6 +36,12 @@ function TaskRouting() {
             if (indexProject >= 0) {
               val = value.slice(0, 8)
             }
+            const indexTask = store?.tasks?.findIndex(
+              (t: any) => t._id === value,
+            )
+            if (indexTask >= 0) {
+              val = value.slice(0, 8)
+            }
             return isLast ? (
               <Typography color='text.primary' key={to}>
                 {decodeURIComponent(val)}
@@ -58,6 +64,7 @@ function TaskRouting() {
 
       <React.Suspense fallback={<Loader />}>
         <Routes>
+          <Route path='/task/:taskId/edit' element={<NewTask />} />
           <Route path='/new' element={<NewTask />} />
           <Route path='/' element={<Task />} />
         </Routes>
