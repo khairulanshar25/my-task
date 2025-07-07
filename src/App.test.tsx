@@ -1,6 +1,7 @@
 /**
  * @vitest-environment jsdom
  */
+import React from 'react'
 import { vi, expect, describe, it } from 'vitest'
 vi.stubGlobal('IS_REACT_ACT_ENVIRONMENT', true)
 import '@testing-library/jest-dom'
