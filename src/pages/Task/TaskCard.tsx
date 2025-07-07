@@ -36,16 +36,17 @@ function TaskCard({
   drag(drop(ref))
 
   return (
-    <Box sx={{ minHeight: 190, marginBottom: 2 }}>
-      <Card
-        ref={ref}
-        variant='outlined'
-        className={classes.card}
-        sx={{
-          opacity: isDragging ? 0.7 : 1,
-          boxShadow: isDragging ? 6 : undefined,
-        }}
-      >
+    <Box
+      ref={ref}
+      sx={{
+        cursor: 'move',
+        minHeight: 200,
+        marginBottom: 2,
+        opacity: isDragging ? 0.7 : 1,
+        boxShadow: isDragging ? 6 : undefined,
+      }}
+    >
+      <Card variant='outlined' className={classes.card}>
         <CardContent>
           <Typography variant='body2' gutterBottom>
             ID: {task._id.slice(0, 8)}

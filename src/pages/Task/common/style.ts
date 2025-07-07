@@ -49,20 +49,11 @@ const Root = styled('div')(({ theme }) => ({
     height: 'calc(100vh - 164px)',
     overflowY: 'auto',
     padding: '0px 16px 4px 16px',
-    display: 'flex',
-    flexDirection: 'column',
-    gap: theme.spacing(2),
   },
   [`& .${classes.card}`]: {
-    cursor: 'move',
     textAlign: 'left',
-    backgroundColor: theme.palette.background.default,
-    overflowY: 'auto',
-    minHeight: '170px',
-    marginBottom: theme.spacing(1),
     '& .MuiCardContent-root': {
       padding: theme.spacing(1, 1.5),
-      minHeight: '170px',
     },
   },
 }))
