@@ -3,14 +3,11 @@
  */
 import React from 'react'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import { render, screen, fireEvent } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import Fallback from './index'
-import useController1 from './common/useController'
-import * as useControllerModule from './common/useController'
 
 describe('Fallback', () => {
-  const mockUseController = useControllerModule.default as unknown as jest.Mock
   beforeEach(() => {
     vi.clearAllMocks()
   })
@@ -20,7 +17,7 @@ describe('Fallback', () => {
       message: 'Something went wrong',
       stack: 'stack trace here',
     }
-    render(<Fallback error={error} />)
+    render(<Fallback hasError={true} error={error} />)
     expect(screen.getByTestId('undefined_Fallback')).toBeInTheDocument()
     expect(screen.getByText(/Error Name: TypeError/)).toBeInTheDocument()
     expect(
@@ -30,7 +27,7 @@ describe('Fallback', () => {
   })
 
   it('renders empty fields when error is undefined', () => {
-    render(<Fallback error={undefined} />)
+    render(<Fallback hasError={false} error={undefined} />)
     expect(screen.getByText(/Error Name:/)).toBeInTheDocument()
     expect(screen.getByText(/Message:/)).toBeInTheDocument()
     expect(screen.getByText(/Stack:/)).toBeInTheDocument()

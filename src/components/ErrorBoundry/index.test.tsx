@@ -33,7 +33,7 @@ describe('ErrorBoundary', () => {
   it('renders fallback UI when an error is thrown', () => {
     // Component that throws error
     const ProblemChild = () => {
-      throw new Error('Test error')
+      throw new window.Error('Test error')
     }
 
     render(
@@ -42,8 +42,6 @@ describe('ErrorBoundary', () => {
       </Error>,
     )
 
-    expect(screen.getByTestId('fallback-error')).toHaveTextContent(
-      'default is not a constructor',
-    )
+    expect(screen.getByTestId('fallback-error')).toHaveTextContent('Test error')
   })
 })

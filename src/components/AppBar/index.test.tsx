@@ -13,7 +13,7 @@ const Comp = () => {
   const { handleClose, handleMenu, handleLogout } = useController1()
   React.useEffect(() => {
     // This is to ensure that the component mounts correctly
-    handleMenu({ currentTarget: {} })
+    handleMenu({ currentTarget: {} } as React.MouseEvent<HTMLButtonElement>)
     handleClose()
     handleLogout()
   }, [])
@@ -25,7 +25,6 @@ vi.mock('react-router', () => ({
 }))
 
 describe('AppBar', () => {
-  const mockUseController = useControllerModule.default as unknown as jest.Mock
   beforeEach(() => {
     vi.clearAllMocks()
   })
@@ -40,7 +39,7 @@ describe('AppBar', () => {
       handleLogout: vi.fn(),
       anchorEl: null,
       open: false,
-    })
+    } as any)
     render(<AppBar />)
     expect(screen.getByText('My Task')).toBeInTheDocument()
     expect(screen.getByTestId('undefined_theme_switch')).toBeInTheDocument()
@@ -55,7 +54,7 @@ describe('AppBar', () => {
       handleLogout: vi.fn(),
       anchorEl: null,
       open: false,
-    })
+    } as any)
     render(<AppBar />)
     expect(screen.queryByText('My Task')).not.toBeInTheDocument()
     expect(screen.getByTestId('undefined_theme_switch')).toBeInTheDocument()
@@ -71,9 +70,9 @@ describe('AppBar', () => {
       handleClose: vi.fn(),
       handleMenu,
       handleLogout: vi.fn(),
-      anchorEl: {},
+      anchorEl: {} as HTMLElement,
       open: true,
-    })
+    } as any)
     render(<AppBar />)
     const iconButton = screen.getByLabelText('account of current user')
     fireEvent.click(iconButton)
@@ -89,9 +88,9 @@ describe('AppBar', () => {
       handleClose,
       handleMenu: vi.fn(),
       handleLogout: vi.fn(),
-      anchorEl: {},
+      anchorEl: {} as HTMLElement,
       open: true,
-    })
+    } as any)
     render(<AppBar />)
     fireEvent.click(screen.getByText('Profile'))
     expect(handleClose).toHaveBeenCalled()
@@ -104,9 +103,9 @@ describe('AppBar', () => {
       handleClose: vi.fn(),
       handleMenu: vi.fn(),
       handleLogout,
-      anchorEl: {},
+      anchorEl: {} as HTMLElement,
       open: true,
-    })
+    } as any)
     render(<AppBar />)
     fireEvent.click(screen.getByText('Logout'))
     expect(handleLogout).toHaveBeenCalled()
