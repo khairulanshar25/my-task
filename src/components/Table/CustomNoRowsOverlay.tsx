@@ -1,6 +1,5 @@
 import * as React from 'react'
 import Box from '@mui/material/Box'
-import { styled } from '@mui/material/styles'
 import { StyledGridOverlay } from './common/style'
 
 function CustomNoRowsOverlay() {

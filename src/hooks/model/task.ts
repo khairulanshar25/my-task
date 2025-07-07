@@ -16,11 +16,11 @@ export interface Task {
   name: string
   description: string
   status: TaskStatusType
-  startedAt: Date
-  targetEndAt: Date
-  endedAt?: Date
-  createdAt: Date
-  updatedAt?: Date
+  startedAt: string | Date
+  targetEndAt: string | Date
+  endedAt?: string | Date
+  createdAt: string | Date
+  updatedAt?: string | Date
   priority?: number
   projectId: string
 }

@@ -7,7 +7,7 @@ export const classes = {
   root: `${PREFIX}-root`,
 }
 
-const Root = styled(Box)(({ theme }) => ({
+const Root = styled(Box)(() => ({
   [`&.${classes.root}`]: {
     width: '100%',
     display: 'flex',

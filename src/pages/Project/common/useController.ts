@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { useContext } from '../../../hooks/provider'
-import useService from './useService'
 import { FilterStatusType } from './interface'
 import { Project } from '../../../hooks/model/project'
 

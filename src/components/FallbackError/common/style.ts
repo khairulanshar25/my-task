@@ -1,5 +1,4 @@
 import { styled } from '@mui/material/styles'
-import { use } from 'react'
 
 export const PREFIX = `${import.meta.env.MFE_APP_PREFIX_STYLE}_Fallback`
 export const classes = {

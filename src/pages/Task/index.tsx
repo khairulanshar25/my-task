@@ -8,11 +8,6 @@ import StatusColumn from './StatusColumn'
 
 function Task() {
   const {
-    projectId,
-    store,
-    updateTaskStatus,
-    updateTaskPriority,
-    theme,
     isMdUp,
     statusList,
     tasksByStatus,

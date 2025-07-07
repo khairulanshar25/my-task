@@ -1,6 +1,4 @@
-import Box from '@mui/material/Box'
 import { styled } from '@mui/material/styles'
-import Tooltip from '@mui/material/Tooltip'
 import { hideScrollbarX, hideScrollbarY } from '../../../utils/cssStyles'
 
 export const PREFIX = `${import.meta.env.MFE_APP_PREFIX_STYLE}_task`

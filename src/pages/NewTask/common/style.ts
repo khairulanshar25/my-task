@@ -1,6 +1,5 @@
 import { styled } from '@mui/material/styles'
 import Box from '@mui/material/Box'
-import { hideScrollbarX, hideScrollbarY } from '../../../utils/cssStyles'
 
 export const PREFIX = `${import.meta.env.MFE_APP_PREFIX_STYLE}_new_task`
 export const classes = {

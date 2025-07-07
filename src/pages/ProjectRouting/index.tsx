@@ -7,7 +7,7 @@ import useController from './common/useController'
 const Project = React.lazy(() => import('../Project'))
 const TaskRouting = React.lazy(() => import('../TaskRouting'))
 const ProjectRouting = () => {
-  const { pathname, navigate, rest, isReady } = useController()
+  const { isReady } = useController()
   if (!isReady) {
     return <Loader />
   }

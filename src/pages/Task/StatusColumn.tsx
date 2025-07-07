@@ -1,6 +1,5 @@
 import * as React from 'react'
-import useController from './common/useController'
-import { TaskStatus } from '../../hooks/model/task'
+import { Task } from '../../hooks/model/task'
 import { Box, Paper, Typography } from '@mui/material'
 import { classes } from './common/style'
 import { useDrop } from 'react-dnd'
@@ -13,10 +12,9 @@ function StatusColumn({
   tasks,
   moveTask,
   onDropTask,
-  isMdUp,
   onEditTask,
   onDeleteTask,
-}) {
+}: any) {
   const [, drop] = useDrop({
     accept: ItemTypes.TASK,
     drop: (item: any) => {
@@ -28,6 +26,7 @@ function StatusColumn({
   })
 
   return (
+    //@ts-expect-error
     <Paper ref={drop} elevation={3} className={classes.statusList}>
       <Typography variant='h6' className={classes.statusTitle}>
         {status}
@@ -40,8 +39,8 @@ function StatusColumn({
         ) : (
           tasks
             .slice()
-            .sort((a, b) => (a.priority ?? 0) - (b.priority ?? 0))
-            .map((task, idx) => (
+            .sort((a: Task, b: Task) => (a.priority ?? 0) - (b.priority ?? 0))
+            .map((task: Task, idx: number) => (
               <TaskCard
                 key={`${status}-${task._id}-${getId()}`}
                 task={task}

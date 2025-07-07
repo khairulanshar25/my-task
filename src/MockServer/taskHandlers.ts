@@ -9,16 +9,19 @@ interface TaskResponse {
 }
 
 export const taskHandlers = [
-  http.get<never, TaskResponse>(
+  http.get<
+    { projectId: string; numberofTasks: string; status: string },
+    TaskResponse
+  >(
     '/api/task/v1/:projectId/:numberofTasks/:status',
-    async ({ request, params, ...rest }) => {
+    async ({ request, params }) => {
       const token =
         request.headers.get('Authorization')?.replace('Bearer', '').trim() || ''
       const user = verifyJWT(token)
       if (user?._id) {
         const dummyTasks = generateDummyTasks(
           params.projectId,
-          params.numberofTasks,
+          params.numberofTasks as unknown as number,
           params.status,
         )
         return HttpResponse.json({ tasks: dummyTasks }, { status: 200 })

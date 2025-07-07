@@ -14,7 +14,7 @@ const useController = () => {
   const CallApi = React.useRef<any>(null)
   React.useEffect(() => {
     if (projectId && !isReady) {
-      const project = store.projects.find((p: any) => p._id === projectId)
+      const project = store?.projects?.find((p: any) => p._id === projectId)
       if (!project) {
         navigate(`/project`)
         return

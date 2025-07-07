@@ -3,8 +3,6 @@ import ErrorBoundry from '../../components/ErrorBoundry'
 import Root, { PREFIX, classes } from './common/style'
 import Link from '@mui/material/Link'
 import Typography from '@mui/material/Typography'
-import Box from '@mui/material/Box'
-import Stack from '@mui/material/Stack'
 import Breadcrumbs from '@mui/material/Breadcrumbs'
 import { Link as RouterLink, Routes, Route } from 'react-router'
 import Loader from '../../components/Loader'
@@ -30,15 +28,13 @@ function TaskRouting() {
             const to = '/' + pathnames.slice(0, index + 1).join('/')
             const isLast = index === pathnames.length - 1
             let val = value
-            const indexProject = store?.projects?.findIndex(
-              (p: any) => p._id === value,
-            )
+            const indexProject =
+              store?.projects?.findIndex((p: any) => p._id === value) ?? -1
             if (indexProject >= 0) {
               val = value.slice(0, 8)
             }
-            const indexTask = store?.tasks?.findIndex(
-              (t: any) => t._id === value,
-            )
+            const indexTask =
+              store?.tasks?.findIndex((t: any) => t._id === value) ?? -1
             if (indexTask >= 0) {
               val = value.slice(0, 8)
             }

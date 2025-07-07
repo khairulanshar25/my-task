@@ -1,17 +1,17 @@
-import React, { useState } from 'react'
+import React from 'react'
 import dayjs, { Dayjs } from 'dayjs'
 import { useParams, useNavigate } from 'react-router'
 import { useContext } from '../../../hooks/provider'
 import useDispatcher from '../../../hooks/useDispatcher'
-import { TaskStatus, TaskStatusType } from '../../../hooks/model/task'
+import { Task, TaskStatus, TaskStatusType } from '../../../hooks/model/task'
 import { getId } from '../../../utils/uuid'
 
 const initialTask = {
   name: '',
   description: '',
   status: TaskStatus.NOT_STARTED as TaskStatusType,
-  startedAt: null as Dayjs | string,
-  targetEndAt: null as Dayjs | string,
+  startedAt: null as unknown as Dayjs | string,
+  targetEndAt: null as unknown as Dayjs | string,
   priority: 1,
   projectId: '',
 }
@@ -28,13 +28,13 @@ const useController = () => {
   const [errors, setErrors] = React.useState<{ [key: string]: string }>({})
   React.useEffect(() => {
     if (taskId) {
-      const existingTask = store.tasks.find((t: any) => t._id === taskId)
+      const existingTask = store?.tasks?.find((t: any) => t._id === taskId)
       if (existingTask) {
         setTask({
           ...existingTask,
           startedAt: dayjs(existingTask.startedAt),
           targetEndAt: dayjs(existingTask.targetEndAt),
-        })
+        } as any)
       }
     }
   }, [store.tasks, projectId, taskId, navigate])
@@ -50,7 +50,7 @@ const useController = () => {
     [task],
   )
   const handleStartedAt = React.useCallback(
-    (newValue) => {
+    (newValue: Dayjs | string) => {
       setTask((prev) => ({
         ...prev,
         startedAt: newValue,
@@ -59,7 +59,7 @@ const useController = () => {
     [task],
   )
   const handleTargetEndAt = React.useCallback(
-    (newValue) => {
+    (newValue: Dayjs | string) => {
       setTask((prev) => ({
         ...prev,
         targetEndAt: newValue,
@@ -86,8 +86,14 @@ const useController = () => {
       // Convert date strings to Date objects
       const newTask = {
         ...task,
-        startedAt: new Date(task.startedAt).toISOString(),
-        targetEndAt: new Date(task.targetEndAt).toISOString(),
+        startedAt: (dayjs.isDayjs(task.startedAt)
+          ? task.startedAt.toDate()
+          : new Date(task.startedAt)
+        ).toISOString(),
+        targetEndAt: (dayjs.isDayjs(task.targetEndAt)
+          ? task.targetEndAt.toDate()
+          : new Date(task.targetEndAt)
+        ).toISOString(),
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
         _id: getId(),
@@ -113,7 +119,7 @@ const useController = () => {
   const onEditTask = React.useCallback(
     (taskId: string, updatedTask: any) => {
       const temp = JSON.parse(JSON.stringify(store.tasks))
-      const index = temp?.findIndex((t) => t._id === taskId)
+      const index = temp?.findIndex((t: Task) => t._id === taskId)
       if (index >= 0) {
         temp[index] = {
           ...temp[index],

@@ -55,6 +55,6 @@ const Root = styled(Box)(({ theme }) => ({
   },
 }))
 
-export const CustomTooltip = styled(Tooltip)(({ theme }) => ({}))
+export const CustomTooltip = styled(Tooltip)(() => ({}))
 
 export default Root

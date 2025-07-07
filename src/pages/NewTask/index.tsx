@@ -10,21 +10,17 @@ import {
 } from '@mui/material'
 import { MobileDateTimePicker } from '@mui/x-date-pickers/MobileDateTimePicker'
 import Root, { PREFIX, classes } from './common/style'
-import { TaskStatus, TaskStatusType } from '../../hooks/model/task'
+import { TaskStatus } from '../../hooks/model/task'
 import useController from './common/useController'
 
 function NewTask() {
   const {
-    store,
-    onSubmit,
     handleSubmit,
-    validate,
     handleChange,
     handleStartedAt,
     handleTargetEndAt,
     errors,
     task,
-    projectId,
     taskId,
   } = useController()
   return (
@@ -75,7 +71,9 @@ function NewTask() {
               label='Started At'
               name='startedAt'
               type='date'
+              //@ts-expect-error
               value={task.startedAt}
+              //@ts-expect-error
               onChange={handleStartedAt}
               error={!!errors.startedAt}
               helperText={errors.startedAt}
@@ -88,7 +86,9 @@ function NewTask() {
               label='Target End At'
               name='targetEndAt'
               type='date'
+              //@ts-expect-error
               value={task.targetEndAt}
+              //@ts-expect-error
               onChange={handleTargetEndAt}
               error={!!errors.targetEndAt}
               helperText={errors.targetEndAt}
@@ -96,6 +96,7 @@ function NewTask() {
               InputLabelProps={{ shrink: true }}
               required
               disablePast={!taskId}
+              //@ts-expect-error
               minDateTime={task.startedAt ? task.startedAt : undefined}
             />
             <Button type='submit' variant='contained' color='primary' fullWidth>

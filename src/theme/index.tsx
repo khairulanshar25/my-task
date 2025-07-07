@@ -1,7 +1,7 @@
 import React from 'react'
 import { ReactElement } from 'react'
 import { Theme, EmotionCache } from '@emotion/react'
-import { RootProps } from '../RootProps'
+import { RootProps } from '../root/common/interface'
 import { CssBaseline } from '@mui/material'
 import { ThemeProvider as MUIThemeProvider } from '@mui/material/styles'
 import GlobalStyles from './globalStyles'

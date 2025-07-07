@@ -1,4 +1,4 @@
-import { TaskStatusType } from '../../../hooks/model/task'
+import { TaskStatusType, Task } from '../../../hooks/model/task'
 
 export const ItemTypes = {
   TASK: 'task',
@@ -6,13 +6,7 @@ export const ItemTypes = {
 }
 
 export interface TaskCardProps {
-  task: {
-    _id: string
-    description: string
-    status: TaskStatusType
-    priority: string
-    startedAt: string | Date
-  }
+  task: Task
   index: number
   status: TaskStatusType
   moveTask: (
@@ -20,4 +14,6 @@ export interface TaskCardProps {
     targetId: string,
     targetStatus: TaskStatusType,
   ) => void
+  onEditTask: (taskId: string) => void
+  onDeleteTask: (taskId: string) => void
 }
