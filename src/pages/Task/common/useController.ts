@@ -75,7 +75,7 @@ const useController = () => {
   )
   const onEditTask = React.useCallback(
     (taskId) => {
-      navigate(`${pathname}/task/${taskId}/edit`)
+      navigate(`/project/${projectId}/task/${taskId}/edit`)
     },
     [pathname],
   )

@@ -55,7 +55,7 @@ function TaskRouting() {
         </Breadcrumbs>
         <Link
           component={RouterLink}
-          to={`${pathname}/new`}
+          to={`${pathname}/task/new`}
           sx={{ display: hideNewTask ? 'none' : 'block' }}
         >
           New Task
@@ -65,7 +65,7 @@ function TaskRouting() {
       <React.Suspense fallback={<Loader />}>
         <Routes>
           <Route path='/task/:taskId/edit' element={<NewTask />} />
-          <Route path='/new' element={<NewTask />} />
+          <Route path='/task/new' element={<NewTask />} />
           <Route path='/*' element={<Task />} />
         </Routes>
       </React.Suspense>
