@@ -8,6 +8,7 @@ export default defineConfig({
       exclude: [
         'src/MockServer/**',
         'public/**',
+        'dist/**',
         'src/theme/overrides/**',
         '**/*.config.*',
         '**/*.d.ts',
