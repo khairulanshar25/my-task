@@ -1,5 +1,5 @@
 import * as React from 'react'
-import MaterialUISwitch from './common/style'
+import MaterialUISwitch, { PREFIX } from './common/style'
 import useController from './common/useController'
 
 function ThemeSwitch() {
@@ -11,6 +11,7 @@ function ThemeSwitch() {
       defaultChecked={mode === 'dark'}
       value={mode === 'dark'}
       onChange={toggleColorMode}
+      data-testid={PREFIX}
     />
   )
 }

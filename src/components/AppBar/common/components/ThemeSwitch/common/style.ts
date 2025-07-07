@@ -2,6 +2,8 @@ import { styled } from '@mui/material/styles'
 import Switch from '@mui/material/Switch'
 import { buttonColor } from '../../../../../../utils/cssStyles'
 
+export const PREFIX = `${import.meta.env.MFE_APP_PREFIX_STYLE}_theme_switch`
+
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 62,
   height: 34,

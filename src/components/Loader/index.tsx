@@ -10,7 +10,7 @@ function Loader() {
     >
       <div>Loading</div>
       <div>
-        <CircularProgress color='inherit' />
+        <CircularProgress color='inherit' data-testid='CircularProgress' />
       </div>
     </Backdrop>
   )

@@ -25,7 +25,11 @@ const Login: React.FC<LoginProps> = () => {
             <Typography variant='h5' align='center' gutterBottom>
               Login
             </Typography>
-            <Box component='form' onSubmit={handleSubmit}>
+            <Box
+              component='form'
+              onSubmit={handleSubmit}
+              data-testid={`${PREFIX}-form`}
+            >
               <TextField
                 label='Email'
                 type='email'
@@ -34,6 +38,7 @@ const Login: React.FC<LoginProps> = () => {
                 value={email}
                 onChange={handleEmailChange}
                 required
+                inputProps={{ 'data-testid': `${PREFIX}-email` }}
               />
               <TextField
                 label='Password'
@@ -43,6 +48,7 @@ const Login: React.FC<LoginProps> = () => {
                 value={password}
                 onChange={handlePasswordChange}
                 required
+                inputProps={{ 'data-testid': `${PREFIX}-password` }}
                 slotProps={{
                   input: {
                     endAdornment: (
@@ -65,6 +71,7 @@ const Login: React.FC<LoginProps> = () => {
                 color='primary'
                 fullWidth
                 sx={{ mt: 2 }}
+                data-testid={`${PREFIX}-login`}
               >
                 Login
               </Button>

@@ -6,7 +6,7 @@ import { StyledGridOverlay } from './common/style'
 function CustomNoRowsOverlay() {
   debugger
   return (
-    <StyledGridOverlay>
+    <StyledGridOverlay data-testid='styled-grid-overlay'>
       <svg
         xmlns='http://www.w3.org/2000/svg'
         fill='none'

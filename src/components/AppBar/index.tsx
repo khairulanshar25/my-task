@@ -1,6 +1,6 @@
 import React from 'react'
 import { Box, Stack, Typography } from '@mui/material'
-import { StyledRoot, StyledToolbar, classes } from './common/style'
+import { StyledRoot, StyledToolbar, classes, PREFIX } from './common/style'
 import ThemeSwitch from './common/components/ThemeSwitch'
 import IconButton from '@mui/material/IconButton'
 import AccountCircle from '@mui/icons-material/AccountCircle'
@@ -13,7 +13,7 @@ function AppBar() {
   const { auth, handleClose, handleMenu, handleLogout, anchorEl, open } =
     useController()
   return (
-    <StyledRoot position='static'>
+    <StyledRoot position='static' data-testid={PREFIX}>
       <StyledToolbar>
         {auth && (
           <MenuItem component={NavLink} to='/' className={classes.menuItem}>
