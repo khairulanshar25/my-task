@@ -5,7 +5,7 @@ import AppBar from '../../components/AppBar'
 import { HomeProps } from './common/interface'
 import Timeout from '../../components/Timeout'
 import useController from './common/useController'
-import { BrowserRouter as Router, Routes, Route } from 'react-router'
+import { HashRouter as Router, Routes, Route } from 'react-router'
 import Loader from '../../components/Loader'
 
 const ProjectRouting = React.lazy(() => import('../ProjectRouting'))

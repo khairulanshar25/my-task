@@ -12,7 +12,7 @@ const Task = React.lazy(() => import('../Task'))
 const NewTask = React.lazy(() => import('../NewTask'))
 
 function TaskRouting() {
-  const { store, pathname, pathnames, isReady, hideNewTask } = useController()
+  const { store, projectId, pathnames, isReady, hideNewTask } = useController()
   if (!isReady) {
     return <Loader />
   }
@@ -51,7 +51,7 @@ function TaskRouting() {
         </Breadcrumbs>
         <Link
           component={RouterLink}
-          to={`${pathname}/task/new`}
+          to={`/project/${projectId}/task/new`}
           sx={{ display: hideNewTask ? 'none' : 'block' }}
         >
           New Task
