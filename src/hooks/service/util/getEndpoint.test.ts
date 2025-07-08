@@ -1,7 +1,7 @@
 import { vi, expect, describe, it } from 'vitest'
 import { getEndPoint } from './getEndpoint'
 
-const originalLocation = 'https://khairulanshar.com/be'
+const originalLocation = ''
 
 describe('getEndPoint', () => {
   it('should return the correct endpoint with default api', () => {

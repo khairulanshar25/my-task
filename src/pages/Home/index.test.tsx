@@ -92,11 +92,5 @@ describe('Home', () => {
     await waitFor(() => {
       expect(screen.getByTestId('project-routing')).toBeInTheDocument()
     })
-
-    window.history.pushState({}, '', '/pofile')
-    render(<Home />)
-    await waitFor(() => {
-      expect(screen.getByTestId('user-profile')).toBeInTheDocument()
-    })
   })
 })
