@@ -3,5 +3,5 @@ export interface EndPoint {
   path: string
 }
 export const getEndPoint = ({ api = '/api', path }: EndPoint) => {
-  return api + path
+  return 'https://khairulanshar.com/be' + api + path
 }
