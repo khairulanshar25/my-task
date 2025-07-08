@@ -100,7 +100,7 @@ function NewTask() {
               minDateTime={task.startedAt ? task.startedAt : undefined}
             />
             <Button type='submit' variant='contained' color='primary' fullWidth>
-              {taskId ? `Edit Task: ${taskId.slice(0, 8)}` : 'Create New Task'}
+              Save
             </Button>
           </Stack>
         </Box>
